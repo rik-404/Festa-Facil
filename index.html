@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Festa Fácil | Personalizados Feitos com Amor em São Pedro/SP</title>
+  <meta name="description" content="Kits personalizados, caixinhas, canecas e topos de bolo feitos com amor em São Pedro/SP. Encomende suas lembrancinhas direto no WhatsApp!">
+  <meta name="keywords" content="Festa Fácil São Pedro SP, Personalizados São Pedro, Lembrancinhas personalizadas, Canecas personalizadas, Topos de bolo São Pedro">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Font Awesome Flat Vector Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- =========================================================
+       HEADER DA LOJA
+       ========================================================= -->
+  <header class="site-header">
+    <div class="container header-content">
+      
+      <!-- Logo 3D no Header com as Cores e Estilo do Logotipo -->
+      <a href="index.html" class="brand-logo-typography">
+        <span class="logo-festa">Festa</span><span class="logo-facil">Fácil</span><span class="logo-heart-decor"><i class="fa-solid fa-heart"></i></span>
+      </a>
+
+      <!-- Search Bar Desktop -->
+      <form class="search-form-header" id="search-form">
+        <i class="fa-solid fa-magnifying-glass search-icon-header"></i>
+        <input type="text" id="search-input" class="search-input-header" placeholder="Buscar lembrancinhas, kits, topos de bolo...">
+      </form>
+
+      <!-- Action Buttons Header -->
+      <div class="header-actions">
+        <!-- Cart Button -->
+        <button type="button" class="icon-btn-badge" id="btn-open-cart" title="Meu Carrinho">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="badge-count" id="cart-count">0</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- =========================================================
+       HERO SECTION (BANNER TÍTULO + ELEMENTOS FLUTUANTES)
+       ========================================================= -->
+  <section class="hero-section">
+    <div class="container hero-container-centered">
+      
+      <!-- Tag Superior -->
+      <div class="hero-tag">
+        <i class="fa-solid fa-star" style="color: var(--yellow-sparkle);"></i>
+        <span>Papelaria & Mimos de Festa Premium</span>
+      </div>
+
+      <!-- Imagem Usada como Título Gráfico Principal com Etiquetas Flutuantes -->
+      <div class="hero-banner-title-wrapper">
+        
+        <!-- Etiqueta Flutuante 1 (Esquerda Superior) -->
+        <div class="hero-float-tag top-left">
+          <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--cyan-dark);"></i>
+          <span>100% Personalizado</span>
+        </div>
+
+        <!-- Etiqueta Flutuante 2 (Direita Superior) -->
+        <div class="hero-float-tag top-right">
+          <i class="fa-solid fa-heart" style="color: var(--primary-pink);"></i>
+          <span>Feito com Amor</span>
+        </div>
+
+        <!-- Imagem do Título Gráfico sem Molduras -->
+        <img src="image.png" alt="Festa Fácil" class="hero-title-img">
+
+      </div>
+
+      <!-- Subtítulo e Tagline Única e Elegante -->
+      <div class="hero-tagline-bar">
+        <span>Personalizados feitos com amor em <strong>São Pedro/SP</strong></span>
+        <span class="hero-tagline-divider">•</span>
+        <span>Criamos • Personalizamos • Encantamos</span>
+      </div>
+
+      <!-- Botões de Ação Principais -->
+      <div class="hero-ctas" style="justify-content: center; margin-top: 24px;">
+        <a href="#vitrine" class="btn-hero-primary">
+          <i class="fa-solid fa-gift"></i>
+          <span>Ver produtos</span>
+        </a>
+        
+        <a href="https://wa.me/5519999999999?text=Ol%C3%A1%20Festa%20F%C3%A1cil!%20Gostaria%20de%20tirar%20uma%20d%C3%BAvida%20sobre%20os%20personalizados." target="_blank" class="btn-hero-secondary">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>Falar no WhatsApp</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       BARRA DE CATEGORIAS DINÂMICAS (CARDS QUADRADOS)
+       ========================================================= -->
+  <section class="categories-section" id="categorias-section">
+    <div class="container">
+      <div class="section-header-row">
+        <h2 class="section-title">
+          <i class="fa-solid fa-shapes"></i>
+          <span>Categorias de Festa</span>
+        </h2>
+      </div>
+
+      <!-- Container das Categorias Carregadas Dinamicamente como Cards Quadrados -->
+      <div class="categories-bar" id="categories-container">
+        <!-- Renderizado via app.js -->
+        <button class="category-card-btn active" data-cat="todos">
+          <i class="fa-solid fa-border-all"></i>
+          <span>Todos</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       VITRINE DE PRODUTOS
+       ========================================================= -->
+  <section class="products-section" id="vitrine">
+    <div class="container">
+      
+      <!-- Filter info bar -->
+      <div class="filter-info-bar">
+        <div class="filter-text" id="filter-status-text">
+          Exibindo todos os produtos (0)
+        </div>
+        
+        <div class="sort-select-wrapper">
+          <i class="fa-solid fa-arrow-down-short-wide sort-icon"></i>
+          <select id="sort-select" class="sort-select">
+            <option value="populares">Ordenar por: Mais Populares</option>
+            <option value="menor-preco">Ordenar por: Menor Preço</option>
+            <option value="maior-preco">Ordenar por: Maior Preço</option>
+          </select>
+          <i class="fa-solid fa-chevron-down chevron-icon"></i>
+        </div>
+      </div>
+
+      <!-- Grid de Produtos -->
+      <div class="products-grid" id="products-grid">
+        <!-- Renderizado dinamicamente pelo JavaScript -->
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- =========================================================
+       DRAWER DO CARRINHO (ORÇAMENTO)
+       ========================================================= -->
+  <div class="cart-drawer-backdrop" id="cart-backdrop"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    
+    <!-- Cart Header -->
+    <div class="cart-header">
+      <div class="cart-title">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span>Seu Carrinho de Orçamento</span>
+      </div>
+      <button class="modal-close-btn" id="btn-close-cart" style="position:static;">&times;</button>
+    </div>
+
+    <!-- Lista de Itens do Carrinho -->
+    <div class="cart-items-list" id="cart-items-container">
+      <!-- Preenchido via app.js -->
+    </div>
+
+    <!-- Rodapé do Carrinho & Checkout -->
+    <div class="cart-footer">
+      
+
+
+      <!-- Aviso de Negociação com a Vendedora -->
+      <div class="cart-notice-box" style="background: rgba(0, 207, 232, 0.15); border-color: var(--cyan-turquesa); color: #005F6B;">
+        <i class="fa-solid fa-comments-dollar" style="font-size: 1.2rem; color: var(--cyan-dark); margin-top: 2px;"></i>
+        <span><strong>Orçamento sem compromisso!</strong> O valor final, descontos e detalhes de criação serão alinhados e negociados diretamente com nossa vendedora pelo WhatsApp.</span>
+      </div>
+
+      <!-- Dados do Cliente para o Orçamento -->
+      <div style="margin-bottom: 16px;">
+        <label class="form-label">Seu Nome:</label>
+        <input type="text" id="checkout-client-name" class="form-input" placeholder="Digite seu nome" style="margin-bottom: 8px;">
+        
+        <label class="form-label">Cidade / Bairro:</label>
+        <input type="text" id="checkout-client-city" class="form-input" value="São Pedro / SP">
+      </div>
+
+      <!-- Botão Finalizar WhatsApp -->
+      <button type="button" class="btn-checkout-whatsapp" id="btn-send-whatsapp">
+        <i class="fa-brands fa-whatsapp" style="font-size: 1.4rem;"></i>
+        <span>Solicitar orçamento</span>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- =========================================================
+       BOTÃO FIXO DO WHATSAPP
+       ========================================================= -->
+  <a href="https://wa.me/5519999999999?text=Ol%C3%A1%20Festa%20F%C3%A1cil!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" class="whatsapp-float-btn" title="Falar no WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand-title">
+          Festa Fácil <i class="fa-solid fa-heart" style="color: var(--primary-pink); font-size: 1.1rem;"></i>
+        </div>
+        <p class="footer-desc">
+          Empresa especializada em papelaria personalizada, topos de bolo, canecas e mimos artesanais em São Pedro/SP. Tudo feito com amor para encantar seus convidados!
+        </p>
+        <div class="brand-badge" style="display:inline-block;">
+          <i class="fa-solid fa-location-dot"></i> São Pedro / SP - Atendimento com hora marcada
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Produtos</div>
+        <ul class="footer-links">
+          <li><a href="#vitrine">Topos de Bolo</a></li>
+          <li><a href="#vitrine">Caixinhas Personalizadas</a></li>
+          <li><a href="#vitrine">Canecas de Porcelana</a></li>
+          <li><a href="#vitrine">Kits Festa Prontos</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Contato & Redes</div>
+        <ul class="footer-links">
+          <li><a href="https://wa.me/5519999999999" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp: (19) 99999-9999</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      &copy; 2026 Festa Fácil São Pedro/SP. Todos os direitos reservados. | Desenvolvido por <a href="https://vendraminiinformatica.com.br" target="_blank" style="color: var(--primary-pink-dark); font-weight: 700; text-decoration: underline;">Vendramini informática</a>
+    </div>
+  </footer>
+
+  <!-- Supabase Client JS & App Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="db.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

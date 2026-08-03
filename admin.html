@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo | Festa Fácil 💖</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-body">
+
+  <!-- =========================================================
+       MODAL DE AUTENTICAÇÃO DO ADMINISTRADOR
+       ========================================================= -->
+  <div class="modal-backdrop open" id="login-modal-backdrop">
+    <div class="modal-card-customization" style="max-width: 420px; padding: 32px; text-align: center;">
+      <div class="logo-icon" style="margin: 0 auto 16px; width: 56px; height: 56px; font-size: 1.8rem; background: var(--primary-pink); color: #FFF; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+      <h2 style="font-size: 1.6rem; color: var(--primary-pink); margin-bottom: 8px;">Acesso Restrito</h2>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px;">
+        Digite a senha de administrador para gerenciar o site da Festa Fácil.
+      </p>
+
+      <form id="admin-login-form">
+        <div class="form-group" style="text-align: left;">
+          <label class="form-label">Senha do Administrador:</label>
+          <input type="password" id="admin-pass-input" class="form-input" placeholder="Senha padrão: admin123" required>
+        </div>
+        <p id="login-error-msg" style="color: red; font-size: 0.85rem; display: none; margin-bottom: 12px;">Senha incorreta! Tente admin123</p>
+        <button type="submit" class="btn-hero-primary" style="width: 100%; justify-content: center;">
+          <i class="fa-solid fa-right-to-bracket"></i> Entrar no Painel
+        </button>
+      </form>
+      
+      <a href="index.html" style="display: block; margin-top: 16px; font-size: 0.88rem; color: var(--text-muted);">
+        <i class="fa-solid fa-arrow-left"></i> Voltar para a loja
+      </a>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       CONTEÚDO PRINCIPAL DO PAINEL ADMIN (SIDEBAR ESQUERDA)
+       ========================================================= -->
+  <div id="admin-main-wrapper" style="display: none;" class="admin-layout-wrapper">
+
+    <!-- Sidebar Lateral Esquerda -->
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-header">
+        <img src="image-removebg-preview.png" alt="Festa Fácil" class="admin-sidebar-logo">
+        <span class="admin-sidebar-title">Painel Admin</span>
+      </div>
+
+      <nav class="admin-sidebar-menu">
+        <button class="admin-tab-btn active" data-tab="tab-dashboard">
+          <i class="fa-solid fa-chart-line"></i> Dashboard
+        </button>
+        <button class="admin-tab-btn" data-tab="tab-categories">
+          <i class="fa-solid fa-shapes"></i> Categorias
+        </button>
+        <button class="admin-tab-btn" data-tab="tab-products">
+          <i class="fa-solid fa-box-open"></i> Produtos
+        </button>
+        <button class="admin-tab-btn" data-tab="tab-orders">
+          <i class="fa-solid fa-receipt"></i> Pedidos Recebidos
+        </button>
+        <button class="admin-tab-btn" data-tab="tab-settings">
+          <i class="fa-solid fa-gear"></i> Configurações & Banco
+        </button>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <a href="index.html" class="btn-sidebar-link" target="_blank">
+          <i class="fa-solid fa-store"></i> Ver Vitrine
+        </a>
+        <button type="button" id="btn-admin-logout" class="btn-sidebar-link logout">
+          <i class="fa-solid fa-power-off"></i> Sair do Painel
+        </button>
+      </div>
+    </aside>
+
+    <!-- Área de Conteúdo à Direita da Sidebar -->
+    <main class="admin-main-content">
+      
+      <!-- =========================================================
+           ABA 1: DASHBOARD
+           ========================================================= -->
+      <section id="tab-dashboard" class="admin-tab-content active">
+        <!-- Stat Cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon pink"><i class="fa-solid fa-box-open"></i></div>
+            <div>
+              <div class="stat-value" id="stat-products-count">0</div>
+              <div class="stat-label">Produtos Cadastrados</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon cyan"><i class="fa-solid fa-shapes"></i></div>
+            <div>
+              <div class="stat-value" id="stat-categories-count">0</div>
+              <div class="stat-label">Categorias Ativas</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon yellow"><i class="fa-solid fa-receipt"></i></div>
+            <div>
+              <div class="stat-value" id="stat-orders-count">0</div>
+              <div class="stat-label">Pedidos Solicitados</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon purple"><i class="fa-solid fa-eye"></i></div>
+            <div>
+              <div class="stat-value" id="stat-views-count">0</div>
+              <div class="stat-label">Visualizações Totais</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabela dos Produtos mais Vistos -->
+        <div class="admin-table-container">
+          <div class="table-toolbar">
+            <h3><i class="fa-solid fa-fire text-warning"></i> Produtos Mais Procurados</h3>
+          </div>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th>Categoria</th>
+                <th>Preço Inicial</th>
+                <th>Visualizações</th>
+              </tr>
+            </thead>
+            <tbody id="top-products-tbody">
+              <!-- Renderizado via admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           ABA 2: GERENCIAMENTO DE CATEGORIAS
+           ========================================================= -->
+      <section id="tab-categories" class="admin-tab-content" style="display: none;">
+        <div class="admin-table-container">
+          <div class="table-toolbar">
+            <h3><i class="fa-solid fa-shapes"></i> Categorias da Loja</h3>
+            <button class="btn-primary-sm" id="btn-add-category">
+              <i class="fa-solid fa-plus"></i> Nova Categoria
+            </button>
+          </div>
+
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Ícone</th>
+                <th>Nome da Categoria</th>
+                <th>Status</th>
+                <th>Ordem</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="categories-tbody">
+              <!-- Renderizado via admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           ABA 3: GERENCIAMENTO DE PRODUTOS
+           ========================================================= -->
+      <section id="tab-products" class="admin-tab-content" style="display: none;">
+        <div class="admin-table-container">
+          <div class="table-toolbar">
+            <div style="display: flex; gap: 12px; align-items: center; flex: 1;">
+              <h3><i class="fa-solid fa-box-open"></i> Catálogo de Produtos</h3>
+              <input type="text" id="admin-product-search" class="form-input" placeholder="Filtrar por nome..." style="max-width: 250px;">
+            </div>
+            <button class="btn-primary-sm" id="btn-add-product">
+              <i class="fa-solid fa-plus"></i> Novo Produto
+            </button>
+          </div>
+
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Foto</th>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Preço Inicial</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="products-tbody">
+              <!-- Renderizado via admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           ABA 4: HISTÓRICO DE PEDIDOS
+           ========================================================= -->
+      <section id="tab-orders" class="admin-tab-content" style="display: none;">
+        <div class="admin-table-container">
+          <div class="table-toolbar">
+            <h3><i class="fa-solid fa-receipt"></i> Pedidos Recebidos pelo WhatsApp</h3>
+          </div>
+
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Cliente</th>
+                <th>Cidade</th>
+                <th>Valor Estimado</th>
+                <th>Data</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="orders-tbody">
+              <!-- Renderizado via admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           ABA 5: CONFIGURAÇÕES & SUPABASE
+           ========================================================= -->
+      <section id="tab-settings" class="admin-tab-content" style="display: none;">
+        <div class="admin-table-container" style="padding: 28px;">
+          <h3 style="margin-bottom: 20px; color: var(--primary-pink);"><i class="fa-solid fa-sliders"></i> Dados da Empresa & WhatsApp</h3>
+          
+          <form id="store-settings-form">
+            <div class="form-group">
+              <label class="form-label">Nome da Loja:</label>
+              <input type="text" id="set-store-name" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Número do WhatsApp (Com DDD e código 55):</label>
+              <input type="text" id="set-whatsapp" class="form-input" placeholder="Ex: 5519999999999" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Slogan / Subtítulo:</label>
+              <input type="text" id="set-slogan" class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Cidade / Estado (Local da Empresa):</label>
+              <input type="text" id="set-city" class="form-input" placeholder="Ex: São Pedro/SP">
+            </div>
+
+            <button type="submit" class="btn-primary-sm" style="margin-top: 12px;">
+              <i class="fa-solid fa-floppy-disk"></i> Salvar Configurações
+            </button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- =========================================================
+       MODAL DE CATEGORIA (CRIAR / EDITAR)
+       ========================================================= -->
+  <div class="modal-backdrop" id="category-modal-backdrop">
+    <div class="modal-card-customization" style="max-width: 500px; padding: 28px;">
+      <button class="modal-close-btn" id="btn-close-cat-modal">&times;</button>
+      <h3 id="cat-modal-title" style="margin-bottom: 20px; color: var(--primary-pink);">Nova Categoria</h3>
+      
+      <form id="category-form">
+        <input type="hidden" id="cat-id-input">
+        
+        <div class="form-group">
+          <label class="form-label">Nome da Categoria:</label>
+          <input type="text" id="cat-name-input" class="form-input" required placeholder="Ex: Batizado, Casamento...">
+        </div>
+
+        <!-- Seletor Interativo de Ícones Flat -->
+        <div class="form-group">
+          <label class="form-label">Escolha o Ícone Flat:</label>
+          <input type="hidden" id="cat-icon-input" value="fa-cake-candles">
+          
+          <div class="icon-picker-grid" id="icon-picker-grid">
+            <button type="button" class="icon-picker-btn active" data-icon="fa-cake-candles" title="Topos de Bolo"><i class="fa-solid fa-cake-candles"></i></button>
+            <button type="button" class="icon-picker-btn" data-icon="fa-box-open" title="Caixinhas"><i class="fa-solid fa-box-open"></i></button>
+            <button type="button" class="icon-picker-btn" data-icon="fa-mug-hot" title="Canecas"><i class="fa-solid fa-mug-hot"></i></button>
+            <button type="button" class="icon-picker-btn" data-icon="fa-wand-magic-sparkles" title="Lembrancinhas"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+            <button type="button" class="icon-picker-btn" data-icon="fa-gift" title="Kits Festa"><i class="fa-solid fa-gift"></i></button>
+            <button type="button" class="icon-picker-btn" data-icon="fa-star" title="Datas Especiais"><i class="fa-solid fa-star"></i></button>
+            <button type="button" class="icon-picker-btn" data-icon="fa-crown" title="Princesas/Realeza"><i class="fa-solid fa-crown"></i></button>
+            <button type="button" class="icon-picker-btn" data-icon="fa-heart" title="Corações"><i class="fa-solid fa-heart"></i></button>
+            <button type="button" class="icon-picker-btn" data-icon="fa-baby" title="Batizado/Maternidade"><i class="fa-solid fa-baby"></i></button>
+            <button type="button" class="icon-picker-btn" data-icon="fa-graduation-cap" title="Formaturas"><i class="fa-solid fa-graduation-cap"></i></button>
+            <button type="button" class="icon-picker-btn" data-icon="fa-ring" title="Casamento"><i class="fa-solid fa-ring"></i></button>
+            <button type="button" class="icon-picker-btn" data-icon="fa-icons" title="Diversos"><i class="fa-solid fa-icons"></i></button>
+          </div>
+        </div>
+
+        <!-- Status da Categoria -->
+        <div class="form-group">
+          <label class="form-label">Status:</label>
+          <select id="cat-status-select" class="form-select">
+            <option value="ativo">Ativo</option>
+            <option value="inativo">Inativo</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-primary-sm" style="width: 100%; justify-content: center; margin-top: 16px;">
+          <i class="fa-solid fa-check"></i> Salvar Categoria
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL DE PRODUTO (CRIAR / EDITAR)
+       ========================================================= -->
+  <div class="modal-backdrop" id="product-crud-modal-backdrop">
+    <div class="modal-card-customization" style="max-width: 650px; padding: 28px;">
+      <button class="modal-close-btn" id="btn-close-prod-crud-modal">&times;</button>
+      <h3 id="prod-modal-title" style="margin-bottom: 20px; color: var(--primary-pink);">Novo Produto</h3>
+      
+      <form id="product-crud-form">
+        <input type="hidden" id="prod-id-input">
+
+        <div class="form-group">
+          <label class="form-label">Nome do Produto:</label>
+          <input type="text" id="prod-name-input" class="form-input" required placeholder="Ex: Kit Safari 3D">
+        </div>
+
+        <div class="form-row-2col">
+          <div class="form-group">
+            <label class="form-label">Categoria:</label>
+            <select id="prod-cat-select" class="form-select" required>
+              <!-- Opções inseridas via JS -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Preço Inicial (R$):</label>
+            <input type="number" id="prod-price-input" class="form-input" placeholder="0.00" step="any" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Descrição Curta:</label>
+          <textarea id="prod-desc-input" class="form-textarea" rows="3" placeholder="Detalhes do produto..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Foto do Produto (URL ou Enviar do Computador):</label>
+          <input type="text" id="prod-img-input" class="form-input" placeholder="Cole a URL da imagem ou escolha um arquivo..." style="margin-bottom: 8px;">
+          
+          <div class="file-upload-box" style="padding: 12px; background: #FAF5F8; border: 2px dashed var(--primary-pink-light);">
+            <input type="file" id="prod-file-input" class="file-upload-input" accept="image/*">
+            <div class="file-upload-text" style="color: var(--primary-pink-dark);">
+              <i class="fa-solid fa-cloud-arrow-up"></i> Clique para enviar uma foto do seu computador
+            </div>
+            <img id="prod-img-preview" class="file-preview-thumb" style="max-height: 100px; margin: 8px auto 0; border-radius: 8px; display: none;" alt="Preview">
+          </div>
+        </div>
+
+        <div class="form-row-2col">
+          <div class="form-group">
+            <label class="form-label">Status:</label>
+            <select id="prod-status-select" class="form-select">
+              <option value="ativo">Ativo</option>
+              <option value="inativo">Inativo</option>
+            </select>
+          </div>
+
+          <div class="form-group" style="display: flex; align-items: center; gap: 8px; margin-top: 24px;">
+            <input type="checkbox" id="prod-destaque-checkbox" style="width: 20px; height: 20px;">
+            <label for="prod-destaque-checkbox" class="form-label" style="margin:0;">Destaque na Vitrine</label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary-sm" style="width: 100%; justify-content: center; margin-top: 16px;">
+          <i class="fa-solid fa-check"></i> Salvar Produto
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="db.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
