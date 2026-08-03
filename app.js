@@ -61,6 +61,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (heroBtn) {
       heroBtn.href = `https://wa.me/${cleanPhone}?text=${defaultMsg}`;
     }
+
+    // Atualiza link e texto do rodapé (Footer)
+    const footerLink = document.getElementById('footer-whatsapp-link') || document.querySelector('.footer-whatsapp-link');
+    const footerText = document.getElementById('footer-whatsapp-text');
+
+    if (footerLink) {
+      footerLink.href = `https://wa.me/${cleanPhone}?text=${defaultMsg}`;
+    }
+
+    if (footerText) {
+      let digits = cleanPhone.startsWith('55') ? cleanPhone.substring(2) : cleanPhone;
+      if (digits.length === 11) {
+        footerText.textContent = `(${digits.substring(0,2)}) ${digits.substring(2,7)}-${digits.substring(7)}`;
+      } else if (digits.length === 10) {
+        footerText.textContent = `(${digits.substring(0,2)}) ${digits.substring(2,6)}-${digits.substring(6)}`;
+      } else {
+        footerText.textContent = settings.whatsapp;
+      }
+    }
   }
 
   // Atualiza contador do carrinho
