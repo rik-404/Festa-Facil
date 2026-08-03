@@ -204,12 +204,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Clique em Adicionar Direto ao Carrinho de Orçamento (1-Click)
     document.querySelectorAll('.btn-quick-add').forEach(btn => {
-      btn.addEventListener('click', async () => {
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation();
         const prodId = btn.getAttribute('data-product-id');
         const product = await db.getProductById(prodId);
         if (!product) return;
 
-        // Adiciona ao carrinho imediatamente
         const item = {
           cart_id: 'cart-item-' + Date.now(),
           produto_id: product.id,
@@ -226,6 +226,46 @@ document.addEventListener('DOMContentLoaded', async () => {
         openCartDrawer();
       });
     });
+
+    // Clique no card do produto para exibir modal com informações completas
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.addEventListener('click', async (e) => {
+        if (e.target.closest('.btn-quick-add')) return;
+        const prodId = card.getAttribute('data-id');
+        const product = await db.getProductById(prodId);
+        if (product) {
+          openProductDetailModal(product);
+        }
+      });
+    });
+  }
+
+  // =========================================================
+  // MODAL DE DETALHES DO PRODUTO
+  // =========================================================
+  let currentDetailProduct = null;
+  const prodDetailModalBackdrop = document.getElementById('product-detail-modal-backdrop');
+  const btnCloseProdDetailModal = document.getElementById('btn-close-prod-detail-modal');
+  const btnDetailAddCart = document.getElementById('btn-detail-add-cart');
+
+  async function openProductDetailModal(product) {
+    if (!product) return;
+    currentDetailProduct = product;
+
+    const categories = await db.getCategories();
+    const catMap = new Map(categories.map(c => [c.id, c.nome]));
+
+    document.getElementById('detail-prod-img').src = product.imagem;
+    document.getElementById('detail-prod-category').textContent = catMap.get(product.categoria_id) || 'Personalizados';
+    document.getElementById('detail-prod-title').textContent = product.nome;
+    document.getElementById('detail-prod-desc').textContent = product.descricao || 'Sem descrição cadastrada.';
+    document.getElementById('detail-prod-price').textContent = `R$ ${parseFloat(product.preco_inicio).toFixed(2).replace('.', ',')}`;
+
+    if (prodDetailModalBackdrop) prodDetailModalBackdrop.classList.add('open');
+  }
+
+  function closeProductDetailModal() {
+    if (prodDetailModalBackdrop) prodDetailModalBackdrop.classList.remove('open');
   }
 
   // =========================================================
@@ -365,6 +405,34 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (btnOpenCart) btnOpenCart.addEventListener('click', openCartDrawer);
     if (btnCloseCart) btnCloseCart.addEventListener('click', closeCartDrawer);
     if (cartBackdrop) cartBackdrop.addEventListener('click', closeCartDrawer);
+
+    // Modal de Detalhes do Produto
+    if (btnCloseProdDetailModal) btnCloseProdDetailModal.addEventListener('click', closeProductDetailModal);
+    if (prodDetailModalBackdrop) {
+      prodDetailModalBackdrop.addEventListener('click', (e) => {
+        if (e.target === prodDetailModalBackdrop) closeProductDetailModal();
+      });
+    }
+
+    if (btnDetailAddCart) {
+      btnDetailAddCart.addEventListener('click', () => {
+        if (!currentDetailProduct) return;
+        const item = {
+          cart_id: 'cart-item-' + Date.now(),
+          produto_id: currentDetailProduct.id,
+          nome: currentDetailProduct.nome,
+          imagem: currentDetailProduct.imagem,
+          preco_inicio: currentDetailProduct.preco_inicio,
+          quantidade: 1
+        };
+        cartItems.push(item);
+        localStorage.setItem('ff_cart_items_v6', JSON.stringify(cartItems));
+
+        updateBadges();
+        closeProductDetailModal();
+        openCartDrawer();
+      });
+    }
   }
 
   // Executa Inicialização

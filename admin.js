@@ -66,21 +66,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('stat-products-count').textContent = products.length;
     document.getElementById('stat-categories-count').textContent = categories.filter(c => c.status === 'ativo').length;
 
-    const totalViews = products.reduce((acc, p) => acc + (p.views_count || 0), 0);
-    document.getElementById('stat-views-count').textContent = totalViews;
-
-    // Top products table
-    const topProducts = [...products].sort((a, b) => (b.views_count || 0) - (a.views_count || 0)).slice(0, 5);
+    // Resumo dos primeiros produtos cadastrados
+    const recentProducts = products.slice(0, 5);
     const catMap = new Map(categories.map(c => [c.id, c.nome]));
 
     let html = '';
-    topProducts.forEach(p => {
+    recentProducts.forEach(p => {
       html += `
         <tr>
           <td><strong>${p.nome}</strong></td>
           <td>${catMap.get(p.categoria_id) || 'Personalizados'}</td>
           <td>R$ ${parseFloat(p.preco_inicio).toFixed(2).replace('.', ',')}</td>
-          <td><i class="fa-solid fa-eye" style="color: var(--primary-pink);"></i> ${p.views_count || 0}</td>
         </tr>
       `;
     });

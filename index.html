@@ -206,7 +206,7 @@
       <!-- Aviso de Negociação com a Vendedora -->
       <div class="cart-notice-box" style="background: rgba(0, 207, 232, 0.15); border-color: var(--cyan-turquesa); color: #005F6B;">
         <i class="fa-solid fa-comments-dollar" style="font-size: 1.2rem; color: var(--cyan-dark); margin-top: 2px;"></i>
-        <span><strong>Orçamento sem compromisso!</strong> O valor final, descontos e detalhes de criação serão alinhados e negociados diretamente com nossa vendedora pelo WhatsApp.</span>
+        <span><strong>Orçamento sem compromisso!</strong> Tema, nome, idade e personalização serão combinados no WhatsApp após solicitar o orçamento!</span>
       </div>
 
       <!-- Dados do Cliente para o Orçamento -->
@@ -224,6 +224,42 @@
         <span>Solicitar orçamento</span>
       </button>
 
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL DE DETALHES DO PRODUTO
+       ========================================================= -->
+  <div class="modal-backdrop" id="product-detail-modal-backdrop">
+    <div class="modal-card-customization product-detail-modal" style="max-width: 680px; padding: 0; overflow: hidden; border-radius: var(--radius-lg); position: relative;">
+      <button class="modal-close-btn" id="btn-close-prod-detail-modal" style="top: 12px; right: 12px; z-index: 10; background: rgba(0,0,0,0.5); color: #FFF; width: 34px; height: 34px; border-radius: 50%; font-size: 1.4rem;">&times;</button>
+      
+      <div class="product-detail-grid">
+        <div class="product-detail-img-col">
+          <img id="detail-prod-img" src="" alt="Produto">
+        </div>
+        
+        <div class="product-detail-info-col">
+          <span class="card-badge-category" id="detail-prod-category" style="position: static; display: inline-block; width: max-content; margin-bottom: 8px;">Categoria</span>
+          <h2 id="detail-prod-title" class="product-detail-title">Nome do Produto</h2>
+          <p id="detail-prod-desc" class="product-detail-desc">Descrição completa do produto...</p>
+          
+          <div class="product-detail-price-box">
+            <div class="price-label">Preço Base (A partir de):</div>
+            <div id="detail-prod-price" class="price-value" style="font-size: 1.5rem; font-weight: 700; color: var(--primary-pink);">R$ 0,00</div>
+          </div>
+
+          <div style="background: rgba(0, 207, 232, 0.1); border: 1px solid var(--cyan-turquesa); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 0.82rem; color: #005F6B; margin-bottom: 18px; line-height: 1.4;">
+            <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--cyan-dark);"></i>
+            <span>Tema, nome, idade e personalização serão combinados no WhatsApp após solicitar o orçamento!</span>
+          </div>
+
+          <button type="button" class="btn-hero-primary" id="btn-detail-add-cart" style="width: 100%; justify-content: center; padding: 14px 20px; font-size: 1rem; cursor: pointer;">
+            <i class="fa-solid fa-cart-plus"></i>
+            <span>Adicionar ao Orçamento</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -249,6 +285,11 @@
         <div class="brand-badge" style="display:inline-block;">
           <i class="fa-solid fa-location-dot"></i> São Pedro / SP - Atendimento com hora marcada
         </div>
+        <div style="display: flex; gap: 12px; margin-top: 14px;">
+          <a href="https://wa.me/5519999999999" id="footer-whatsapp-link" class="footer-whatsapp-link" target="_blank" title="Falar no WhatsApp" style="width: 40px; height: 40px; border-radius: 50%; background: #25D36615; color: #25D366; display: inline-flex; align-items: center; justify-content: center; font-size: 1.25rem; border: 1px solid #25D36640; transition: transform 0.2s;"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://www.instagram.com/festa_facil_personalizados?igsh=OTNybHA5cjR1bW4w" target="_blank" rel="noopener noreferrer" title="Siga no Instagram" style="width: 40px; height: 40px; border-radius: 50%; background: #E1306C15; color: #E1306C; display: inline-flex; align-items: center; justify-content: center; font-size: 1.25rem; border: 1px solid #E1306C40; transition: transform 0.2s;"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/share/1CtrdxNyvJ/" target="_blank" rel="noopener noreferrer" title="Curta no Facebook" style="width: 40px; height: 40px; border-radius: 50%; background: #1877F215; color: #1877F2; display: inline-flex; align-items: center; justify-content: center; font-size: 1.25rem; border: 1px solid #1877F240; transition: transform 0.2s;"><i class="fa-brands fa-facebook"></i></a>
+        </div>
       </div>
 
       <div>
@@ -258,13 +299,6 @@
           <li><a href="#vitrine">Caixinhas Personalizadas</a></li>
           <li><a href="#vitrine">Canecas de Porcelana</a></li>
           <li><a href="#vitrine">Kits Festa Prontos</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <div class="footer-col-title">Contato & Redes</div>
-        <ul class="footer-links">
-          <li><a href="https://wa.me/5519999999999" id="footer-whatsapp-link" class="footer-whatsapp-link" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp: <span id="footer-whatsapp-text">(19) 99999-9999</span></a></li>
         </ul>
       </div>
     </div>
