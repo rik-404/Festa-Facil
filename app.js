@@ -360,15 +360,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       let productsMessageText = '';
 
       cartItems.forEach((item, idx) => {
-        const itemSubtotal = item.preco_inicio * item.quantidade;
-        totalValue += itemSubtotal;
-
-        productsMessageText += `\n*${idx + 1}. ${item.nome}*\n`;
-        productsMessageText += `• Quantidade: ${item.quantidade} unidade(s)\n`;
-        productsMessageText += `• Valor Base: R$ ${parseFloat(item.preco_inicio).toFixed(2).replace('.', ',')}\n`;
+        productsMessageText += `\n*Item ${idx + 1}: ${item.nome}*\n`;
       });
 
-      const fullMessage = `Olá ${settings.nome_loja}! 💖\n\nGostaria de solicitar um orçamento sem compromisso para os seguintes itens:\n${productsMessageText}\n📍 *DADOS DO CLIENTE:*\n• Nome: ${clientName}\n• Local: ${clientCity}\n\n💰 *SUBTOTAL BASE ESTIMADO:* R$ ${totalValue.toFixed(2).replace('.', ',')}\n_(Gostaria de negociar a personalização, quantidade e o valor final com a vendedora!)_ 😊`;
+      const fullMessage = `Olá ${settings.nome_loja}! 💖\n\nGostaria de solicitar um orçamento sem compromisso para os seguintes itens:\n${productsMessageText}\n📍 *DADOS DO CLIENTE:*\n• Nome: ${clientName}\n• Local: ${clientCity}\n\n_(Gostaria de combinar a quantidade, tema, nome/idade e o valor final diretamente com a vendedora!)_ 😊`;
 
       // Abrir WhatsApp
       const encodedMsg = encodeURIComponent(fullMessage);
