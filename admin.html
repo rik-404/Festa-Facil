@@ -61,9 +61,6 @@
         <button class="admin-tab-btn" data-tab="tab-products">
           <i class="fa-solid fa-box-open"></i> Produtos
         </button>
-        <button class="admin-tab-btn" data-tab="tab-orders">
-          <i class="fa-solid fa-receipt"></i> Pedidos Recebidos
-        </button>
         <button class="admin-tab-btn" data-tab="tab-settings">
           <i class="fa-solid fa-gear"></i> Configurações & Banco
         </button>
@@ -101,14 +98,6 @@
             <div>
               <div class="stat-value" id="stat-categories-count">0</div>
               <div class="stat-label">Categorias Ativas</div>
-            </div>
-          </div>
-
-          <div class="stat-card">
-            <div class="stat-icon yellow"><i class="fa-solid fa-receipt"></i></div>
-            <div>
-              <div class="stat-value" id="stat-orders-count">0</div>
-              <div class="stat-label">Pedidos Solicitados</div>
             </div>
           </div>
 
@@ -198,34 +187,6 @@
               </tr>
             </thead>
             <tbody id="products-tbody">
-              <!-- Renderizado via admin.js -->
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- =========================================================
-           ABA 4: HISTÓRICO DE PEDIDOS
-           ========================================================= -->
-      <section id="tab-orders" class="admin-tab-content" style="display: none;">
-        <div class="admin-table-container">
-          <div class="table-toolbar">
-            <h3><i class="fa-solid fa-receipt"></i> Pedidos Recebidos pelo WhatsApp</h3>
-          </div>
-
-          <table class="admin-table">
-            <thead>
-              <tr>
-                <th>Código</th>
-                <th>Cliente</th>
-                <th>Cidade</th>
-                <th>Valor Estimado</th>
-                <th>Data</th>
-                <th>Status</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody id="orders-tbody">
               <!-- Renderizado via admin.js -->
             </tbody>
           </table>

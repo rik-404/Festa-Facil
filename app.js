@@ -311,14 +311,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       const fullMessage = `Olá ${settings.nome_loja}! 💖\n\nGostaria de solicitar um orçamento sem compromisso para os seguintes itens:\n${productsMessageText}\n📍 *DADOS DO CLIENTE:*\n• Nome: ${clientName}\n• Local: ${clientCity}\n\n💰 *SUBTOTAL BASE ESTIMADO:* R$ ${totalValue.toFixed(2).replace('.', ',')}\n_(Gostaria de negociar a personalização, quantidade e o valor final com a vendedora!)_ 😊`;
 
-      // Salvar pedido no histórico
-      await db.saveOrder({
-        cliente_nome: clientName,
-        cliente_cidade: clientCity,
-        produtos_json: cartItems,
-        valor_estimado: totalValue
-      });
-
       // Abrir WhatsApp
       const encodedMsg = encodeURIComponent(fullMessage);
       window.open(`https://wa.me/${phone}?text=${encodedMsg}`, '_blank');

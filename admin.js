@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (targetTab === 'tab-dashboard') loadDashboard();
       if (targetTab === 'tab-categories') loadCategoriesTable();
       if (targetTab === 'tab-products') loadProductsTable();
-      if (targetTab === 'tab-orders') loadOrdersTable();
       if (targetTab === 'tab-settings') loadSettingsForm();
     });
   });
@@ -63,11 +62,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   async function loadDashboard() {
     const products = await db.getProducts(null, '', false);
     const categories = await db.getCategories();
-    const orders = await db.getOrders();
 
     document.getElementById('stat-products-count').textContent = products.length;
     document.getElementById('stat-categories-count').textContent = categories.filter(c => c.status === 'ativo').length;
-    document.getElementById('stat-orders-count').textContent = orders.length;
 
     const totalViews = products.reduce((acc, p) => acc + (p.views_count || 0), 0);
     document.getElementById('stat-views-count').textContent = totalViews;
@@ -365,61 +362,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   adminProductSearch.addEventListener('input', loadProductsTable);
-
-  // =========================================================
-  // ORDERS TAB
-  // =========================================================
-  async function loadOrdersTable() {
-    const orders = await db.getOrders();
-    let html = '';
-
-    orders.forEach(o => {
-      const dateFormatted = new Date(o.created_at).toLocaleDateString('pt-BR');
-
-      html += `
-        <tr>
-          <td><strong>${o.codigo_pedido || 'FF-0000'}</strong></td>
-          <td>${o.cliente_nome}</td>
-          <td>${o.cliente_cidade || 'São Pedro / SP'}</td>
-          <td>R$ ${parseFloat(o.valor_estimado).toFixed(2).replace('.', ',')}</td>
-          <td>${dateFormatted}</td>
-          <td>
-            <select class="form-select order-status-select" data-id="${o.id}" style="padding: 4px 8px; font-size: 0.82rem;">
-              <option value="novo" ${o.status === 'novo' ? 'selected' : ''}>Novo</option>
-              <option value="em_producao" ${o.status === 'em_producao' ? 'selected' : ''}>Em Produção</option>
-              <option value="concluido" ${o.status === 'concluido' ? 'selected' : ''}>Concluído</option>
-              <option value="cancelado" ${o.status === 'cancelado' ? 'selected' : ''}>Cancelado</option>
-            </select>
-          </td>
-          <td>
-            <button class="btn-primary-sm btn-view-order" data-id="${o.id}" style="padding: 4px 10px; font-size: 0.8rem;">
-              <i class="fa-solid fa-eye"></i> Detalhes
-            </button>
-          </td>
-        </tr>
-      `;
-    });
-
-    document.getElementById('orders-tbody').innerHTML = html;
-
-    document.querySelectorAll('.order-status-select').forEach(sel => {
-      sel.addEventListener('change', async () => {
-        const id = sel.getAttribute('data-id');
-        await db.updateOrderStatus(id, sel.value);
-      });
-    });
-
-    document.querySelectorAll('.btn-view-order').forEach(btn => {
-      btn.addEventListener('click', async () => {
-        const id = btn.getAttribute('data-id');
-        const orders = await db.getOrders();
-        const order = orders.find(o => o.id === id);
-        if (order) {
-          alert(`PEDIDO: ${order.codigo_pedido}\nCliente: ${order.cliente_nome}\nValor Estimado: R$ ${order.valor_estimado.toFixed(2)}\n\nItens:\n` + JSON.stringify(order.produtos_json, null, 2));
-        }
-      });
-    });
-  }
 
   // =========================================================
   // SETTINGS TAB
