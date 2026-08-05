@@ -46,7 +46,7 @@ const DEFAULT_SEED_DATA = {
       categoria_id: 'c5555555-5555-5555-5555-555555555555',
       nome: 'Kit Personalizado Safari',
       descricao: 'Kit completo contendo 20 caixinhas variadas (Milk, Cone, Pyramide e Maletinha) com apliques 3D e laços de cetim premium no tema Safari.',
-      imagem: 'image.png',
+      imagem: 'src/images/image.png',
       preco_inicio: 35.00,
       destaque: true,
       status: 'ativo',
