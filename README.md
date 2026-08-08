@@ -1,85 +1,130 @@
-# 💖 Festa Fácil - Vitrine & Catálogo de Orçamentos
+<p align="center">
+  <img src="src/images/image.png" alt="Festa Fácil - Personalizados" width="520">
+</p>
 
-Uma plataforma web moderna, elegante e de alta performance desenvolvida para a **Festa Fácil** (São Pedro/SP), especializada em papelaria personalizada, topos de bolo, canecas e mimos artesanais.
+<h3 align="center">✨ Criamos • Personalizamos • Encantamos ✨</h3>
 
-O projeto permite que clientes naveguem pelo catálogo, filtrem produtos por categorias ativas, façam buscas em tempo real e enviem um **orçamento direto para o WhatsApp** da vendedora sem burocracias. Além disso, conta com um **Painel Administrativo completo** para gestão do catálogo e configurações.
-
----
-
-## 🌟 Funcionalidades Principais
-
-### 🛍️ Vitrine do Cliente (`index.html` & `app.js`)
-- **Navegação Inteligente de Categorias**: Cards responsivos com ícones Flat FontAwesome e tooltips informativos. Exibe dinamicamente apenas categorias que possuem produtos ativos cadastrados.
-- **Busca e Ordenação em Tempo Real**:
-  - Filtro por texto (nome ou descrição do produto).
-  - Ordenação por: *Mais Populares (Visualizações)*, *Menor Preço* e *Maior Preço*.
-- **Carrinho de Orçamento sem Compromisso**:
-  - Adição rápida de itens ao carrinho.
-  - Coleta simples de dados do cliente (Nome e Bairro/Cidade).
-  - **Integração com WhatsApp**: Monta uma mensagem detalhada e organizada com a lista de itens e dados do cliente, abrindo o bate-papo diretamente com o número configurado.
-- **Botões Dinâmicos do WhatsApp**: Tanto o botão flutuante quanto o botão da seção Hero são sincronizados automaticamente com o número de contato cadastrado no painel administrativo.
-- **Identidade Visual & Compartilhamento (SEO & Open Graph)**: Configurado com meta tags Open Graph e Twitter Cards para que o link da loja apareça com título profissional, descrição atraente e prévia da imagem oficial quando compartilhado no WhatsApp, Facebook e redes sociais.
+<p align="center">
+  <img src="https://img.shields.io/badge/status-online-25D366?style=for-the-badge" alt="Status">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=000" alt="JavaScript">
+  <img src="https://img.shields.io/badge/Supabase-3FCF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase">
+  <img src="https://img.shields.io/badge/Font_Awesome-528DD7?style=for-the-badge&logo=fontawesome&logoColor=white" alt="Font Awesome">
+</p>
 
 ---
 
-### ⚙️ Painel Administrativo (`admin.html` & `admin.js`)
-- **Dashboard com Métricas**:
-  - Total de produtos cadastrados.
-  - Total de categorias ativas.
-  - Contagem total de visualizações de produtos.
-  - Tabela dos 5 produtos mais procurados.
-- **Gestão de Categorias (CRUD)**:
-  - Criação e edição com seletor interativo de ícones Flat FontAwesome.
-  - Ativação/Desativação de categorias.
-  - Exclusão com confirmação.
-- **Gestão de Produtos (CRUD)**:
-  - Cadastro completo (Nome, Categoria, Preço Inicial, Descrição e Imagem).
-  - Upload de foto do computador (via FileReader/Base64) ou URL externa.
-  - Opção de marcar produto em **Destaque na Vitrine**.
-  - Controle de status (Ativo/Inativo).
-- **Configurações da Empresa**:
-  - Alteração do Nome da Loja, Slogan, Cidade/Estado e **Número do WhatsApp**.
-  - As atualizações do número refletem instantaneamente nos botões de atendimento do site.
+## 📌 Sobre o Projeto
+
+**Festa Fácil** é uma plataforma web moderna e elegante desenvolvida para uma empresa de papelaria personalizada localizada em **São Pedro/SP**, especializada em topos de bolo, canecas, caixinhas e mimos artesanais.
+
+O sistema permite que os clientes naveguem pela vitrine de produtos, filtrem por categorias, façam buscas em tempo real e montem um **carrinho de orçamento direto pelo WhatsApp** — sem cadastro e sem burocracia. Também conta com um **Painel Administrativo completo** para gestão de produtos, categorias e configurações da loja.
 
 ---
 
-## 🗄️ Estrutura do Banco de Dados & Arquitetura
+## 🌟 Funcionalidades
 
-O sistema adota uma arquitetura **híbrida e resiliente** via `db.js`:
-1. **Supabase PostgreSQL Cloud**: Sincronização em tempo real das tabelas `categorias`, `produtos` e `configuracoes`.
-2. **LocalStorage Fallback**: Backup offline automático em caso de desconexão ou indisponibilidade de rede.
+### 🛍️ Vitrine Pública
 
-### 📁 Tabela de Arquivos do Projeto
-
-| Arquivo | Descrição |
+| Recurso | Descrição |
 | :--- | :--- |
-| [`index.html`](file:///media/ricardo/7AEE-1816/Sites/Festa%20Facil/index.html) | Interface pública da loja (Vitrine, Hero, Categorias e Drawer do Carrinho). |
-| [`app.js`](file:///media/ricardo/7AEE-1816/Sites/Festa%20Facil/app.js) | Lógica da vitrine (Filtros, busca, ordenação, carrinho e disparo do WhatsApp). |
-| [`admin.html`](file:///media/ricardo/7AEE-1816/Sites/Festa%20Facil/admin.html) | Interface do Painel Administrativo em layout de Sidebar lateral. |
-| [`admin.js`](file:///media/ricardo/7AEE-1816/Sites/Festa%20Facil/admin.js) | Lógica do Backoffice (Dashboard, CRUD de categorias, CRUD de produtos e configurações). |
-| [`db.js`](file:///media/ricardo/7AEE-1816/Sites/Festa%20Facil/db.js) | Camada de acesso a dados (Supabase Client + LocalStorage Backup). |
-| [`styles.css`](file:///media/ricardo/7AEE-1816/Sites/Festa%20Facil/styles.css) | Estilização completa com CSS customizado, temas de cores HSL, responsividade e animações. |
-| [`schema.sql`](file:///media/ricardo/7AEE-1816/Sites/Festa%20Facil/schema.sql) | Script SQL para criação das tabelas, políticas de segurança (RLS) e dados iniciais no Supabase. |
+| **Categorias Inteligentes** | Cards responsivos com ícones FontAwesome. Exibe apenas categorias com produtos ativos. |
+| **Busca em Tempo Real** | Filtragem instantânea por nome ou descrição do produto. |
+| **Ordenação** | Mais Populares, Menor Preço e Maior Preço. |
+| **Carrinho de Orçamento** | Adição rápida de itens + envio direto via WhatsApp com mensagem formatada. |
+| **WhatsApp Dinâmico** | Botão flutuante e botão Hero sincronizados com o número cadastrado no admin. |
+| **SEO & Open Graph** | Meta tags otimizadas para compartilhamento no WhatsApp, Facebook e redes sociais. |
+
+### ⚙️ Painel Administrativo
+
+| Recurso | Descrição |
+| :--- | :--- |
+| **Dashboard** | Métricas de produtos, categorias ativas, visualizações e top 5 mais buscados. |
+| **CRUD de Categorias** | Criar, editar, ativar/desativar e excluir com seletor de ícones interativo. |
+| **CRUD de Produtos** | Cadastro completo com upload de imagem (Base64 ou URL), destaque e status. |
+| **Configurações** | Nome da loja, slogan, cidade/estado e número do WhatsApp — com reflexo instantâneo no site. |
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🏗️ Arquitetura & Banco de Dados
 
-- **HTML5 & CSS3 Vanilla** (Variáveis CSS, CSS Grid, Flexbox, Glassmorphism e gradientes).
-- **JavaScript (ES6+)** (Async/Await, Fetch API, DOM Manipulation).
-- **FontAwesome 6** (Ícones flat vetoriais).
-- **Supabase JS Client v2** (Autenticação e Database PostgreSQL).
-- **Google Fonts** (Tipografia moderna e legível).
+O sistema utiliza uma arquitetura **híbrida e resiliente**:
 
----
+```
+☁️  Supabase (PostgreSQL Cloud)  ←→  📱 Aplicação Web  ←→  💾 LocalStorage (Fallback Offline)
+```
 
-## 🚀 Como Executar o Projeto
-
-1. Clone o repositório ou abra a pasta do projeto no servidor web/navegador.
-2. Abra o arquivo [`index.html`](file:///media/ricardo/7AEE-1816/Sites/Festa%20Facil/index.html) no navegador para acessar a vitrine pública.
-3. Para acessar o painel administrativo, abra [`admin.html`](file:///media/ricardo/7AEE-1816/Sites/Festa%20Facil/admin.html) no navegador.
+- **Supabase**: Sincronização em tempo real das tabelas `categorias`, `produtos` e `configuracoes`.
+- **LocalStorage**: Backup automático offline — garante funcionamento mesmo sem internet.
 
 ---
 
-### 📍 Localização
-**Festa Fácil** • São Pedro / SP
+## 📁 Estrutura do Projeto
+
+```
+Festa Fácil/
+├── index.html                 # Vitrine pública da loja
+├── README.md                  # Documentação do projeto
+├── admin/
+│   └── admin.html             # Painel Administrativo
+├── sql/
+│   └── schema.sql             # Script SQL (tabelas, RLS e seeds)
+└── src/
+    ├── images/
+    │   ├── image.png           # Logo oficial da marca
+    │   ├── image-removebg-preview.png  # Logo sem fundo (favicon)
+    │   └── vendramini-icon.png # Ícone do desenvolvedor
+    ├── js/
+    │   ├── app.js              # Lógica da vitrine (filtros, carrinho, WhatsApp)
+    │   ├── admin.js            # Lógica do painel admin (dashboard, CRUDs)
+    │   └── db.js               # Camada de dados (Supabase + LocalStorage)
+    └── styles/
+        └── styles.css          # Estilização completa (CSS custom, HSL, animações)
+```
+
+---
+
+## 🛠️ Tecnologias
+
+| Tecnologia | Uso |
+| :--- | :--- |
+| **HTML5** | Estrutura semântica e acessível |
+| **CSS3 Vanilla** | Variáveis CSS, Grid, Flexbox, Glassmorphism e gradientes |
+| **JavaScript ES6+** | Async/Await, Fetch API, DOM Manipulation |
+| **Supabase JS v2** | Backend PostgreSQL em nuvem com RLS |
+| **FontAwesome 6** | Ícones flat vetoriais |
+| **Google Fonts** | Tipografia moderna e legível |
+
+---
+
+## 🚀 Como Executar
+
+1. **Clone** o repositório:
+   ```bash
+   git clone https://github.com/rik-404/Festa-Facil.git
+   ```
+
+2. Abra o arquivo `index.html` no navegador para acessar a **vitrine pública**.
+
+3. Acesse `admin/admin.html` para o **painel administrativo**.
+
+> [!TIP]
+> O sistema funciona inteiramente no front-end com Supabase como BaaS. Não é necessário instalar dependências ou rodar um servidor local.
+
+---
+
+## 📍 Localização
+
+**Festa Fácil Personalizados** • São Pedro / SP
+
+<p align="center">
+  <a href="https://www.instagram.com/festa_facil_personalizados"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"></a>
+  <a href="https://www.facebook.com/share/1CtrdxNyvJ/"><img src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white" alt="Facebook"></a>
+</p>
+
+---
+
+<p align="center">
+  Desenvolvido por <strong><a href="https://vendraminiinformatica.com.br/">Vendramini Informática</a></strong> 💜
+</p>
